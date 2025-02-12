@@ -1,0 +1,32 @@
+CREATE DATABASE game_db;
+USE game_db;
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    secret_code VARCHAR(50),
+    role VARCHAR(20) DEFAULT 'user'
+);
+
+CREATE TABLE players (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    total_tokens_input INT DEFAULT 0,
+    tokens_spent INT DEFAULT 0,
+    current_tokens INT DEFAULT 0,
+    total_money DECIMAL(10,2) DEFAULT 0.00,
+    added_by INT,
+    FOREIGN KEY (added_by) REFERENCES users(id)
+);
+
+CREATE TABLE history (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    player_id INT,
+    action_type VARCHAR(50),
+    tokens_change INT,
+    money_change DECIMAL(10,2),
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (player_id) REFERENCES players(id)
+);

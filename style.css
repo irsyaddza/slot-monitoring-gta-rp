@@ -1,0 +1,413 @@
+/* Modern Minimalist Theme
+Colors:
+- Background: #F7F7F7
+- Primary: #FFB22C
+- Secondary: #854836
+- Dark: #343131
+*/
+
+:root {
+    --bg-color: #F7F7F7;
+    --primary: #FFB22C;
+    --secondary: #854836;
+    --dark: #343131;
+    --shadow: 0 4px 6px rgba(52, 49, 49, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--dark);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+/* Typography */
+h2 {
+    color: var(--secondary);
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    color: var(--dark);
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+button {
+    background: var(--primary);
+    color: var(--dark);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #ffa600;
+    transform: translateY(-2px);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+th,
+td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: var(--primary);
+    color: var(--dark);
+    font-weight: 600;
+}
+
+/* Player Cards */
+.player-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.player-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(52, 49, 49, 0.15);
+}
+
+.player-card h4 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+/* Admin Actions */
+.admin-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.action-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* Buttons */
+.game-button {
+    background: var(--secondary);
+    color: white;
+}
+
+.game-button:hover {
+    background: #723d2e;
+}
+
+.delete-button {
+    background: #dc3545;
+    color: white;
+}
+
+.delete-button:hover {
+    background: #c82333;
+}
+
+.search-button {
+    background: var(--primary);
+    color: var(--dark);
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.search-button:hover {
+    background: #ffa600;
+    transform: translateY(-2px);
+}
+
+/* Status Messages */
+.error,
+.success {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+.error {
+    background: #ffe5e5;
+    color: #dc3545;
+}
+
+.success {
+    background: #e5ffe5;
+    color: #28a745;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .admin-actions {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        padding: 0.75rem;
+    }
+
+    .player-card {
+        padding: 1rem;
+    }
+
+    .player-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .token-form {
+        flex-direction: column;
+    }
+
+    .token-form input {
+        max-width: 100%;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* Links */
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.links a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.links a:hover {
+    color: var(--primary);
+}
+
+/* Logout Link */
+.logout {
+    display: inline-block;
+    color: var(--dark);
+    text-decoration: none;
+    margin-top: 2rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.logout:hover {
+    color: var(--secondary);
+}
+
+/* Button Container Styles */
+.button-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  /* Primary Action Buttons */
+  .btn-primary {
+    background: var(--primary);
+    color: var(--dark);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 120px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .btn-primary:hover {
+    background: #ffa600;
+    transform: translateY(-2px);
+  }
+  
+  /* Secondary Action Buttons */
+  .btn-secondary {
+    background: var(--secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 120px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .btn-secondary:hover {
+    background: #723d2e;
+    transform: translateY(-2px);
+  }
+  
+  /* Danger Buttons */
+  .btn-danger {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background: #c82333;
+  }
+  
+  /* Player Card Actions */
+  .player-actions {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .token-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .token-form input {
+    max-width: 120px;
+  }
+  
+  .token-form button {
+    white-space: nowrap;
+  }
+  
+  /* Search Form */
+  .search-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  
+  .search-form .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .search-form button {
+    width: 100%;
+  }
+  
+  /* Navigation Links */
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .nav-links a {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }  
