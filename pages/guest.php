@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connection.php';
+require_once '../config/db_connection.php';
 
 $search_results = null;
 if (isset($_GET['search'])) {
@@ -28,7 +28,7 @@ if (isset($_GET['search'])) {
 <html>
 <head>
     <title>Slot - Guest Access</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -85,7 +85,7 @@ if (isset($_GET['search'])) {
         <?php endif; ?>
         
         <div class="links">
-            <a href="login.php">Back to Login</a>
+            <a href="../index.php">Back to Login</a>
         </div>
     </div>
     <footer class="footer">

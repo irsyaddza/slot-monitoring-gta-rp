@@ -1,20 +1,27 @@
 <?php
-require_once 'db_connection.php';
+require_once __DIR__ . '/config/db_connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $secret_code = $_POST['secret_code'];
+    $password = $_POST['password'];
     
-    $role = ($secret_code === 'bandarhillside') ? 'admin' : 'user';
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch();
     
-    try {
-        $stmt = $pdo->prepare("INSERT INTO users (username, password, secret_code, role) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$username, $password, $secret_code, $role]);
-        header("Location: login.php");
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['username'] = $user['username'];  
+        
+        if ($user['role'] === 'admin') {
+            header("Location: pages/admin.php");  
+        } else {
+            header("Location: pages/player.php"); 
+        }
         exit();
-    } catch(PDOException $e) {
-        $error = "Registration failed: " . $e->getMessage();
+    } else {
+        $error = "Invalid username or password";
     }
 }
 ?>
@@ -22,14 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Slot - Register</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Slot - Login</title>
+    <link rel="stylesheet" href="../slot/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <h2>Slot Machine Monitoring</h2>
-        <h2>Register</h2>
+        <h2>Login</h2>
         <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
         
         <form method="POST" action="">
@@ -43,19 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="password" name="password" required>
             </div>
             
-            <div class="form-group">
-                <label>Secret Code:</label>
-                <input type="text" name="secret_code">
-            </div>
-            
-            <button type="submit">Register</button>
+            <button type="submit">Login</button>
         </form>
         
         <div class="links">
-            <a href="login.php">Login</a>
-            <a href="guest.php">Guest Access</a>
+            <a href="../slot/pages/register.php">Register</a>
+            <a href="../slot/pages/guest.php">Guest Access</a>
         </div>
     </div>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">

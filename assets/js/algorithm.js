@@ -17,7 +17,7 @@ function addTokens(event, playerId) {
     event.preventDefault();
     const tokens = parseInt(event.target.tokens.value);
 
-    fetch('update_tokens.php', {
+    fetch('/slot/pages/update_tokens.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ function startGame(playerId) {
     if (!confirm('Start game? This will cost 5 tokens.')) return;
 
     // Deduct 5 tokens first
-    fetch('update_tokens.php', {
+    fetch('/slot/pages/update_tokens.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ function calculateReward(playerId, numbers) {
 
 // Function to add reward tokens to a player
 function addReward(playerId, reward) {
-    fetch('update_tokens.php', {
+    fetch('/slot/pages/update_tokens.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

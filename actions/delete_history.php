@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connection.php';
+require_once '../config/db_connection.php';
 
 // Check if user is admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {

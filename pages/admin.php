@@ -1,11 +1,6 @@
 <?php
-require_once 'db_connection.php';
-
-// Check if user is admin
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit();
-}
+require_once '../config/db_connection.php';
+include '../includes/header.php';
 
 // Add player (only through the form)
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_player'])) {
@@ -74,18 +69,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_player'])) {
 
 <head>
     <title>Slot - Dealer Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="algorithm.js"></script>
+    <script src="../assets/js/algorithm.js"></script>
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
         <h2>Dealer Dashboard</h2>
-
-        <div class="nav-links">
-            <a href="guest.php" class="btn-primary">🔍 Search Players History</a>
-        </div>
 
         <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
         <?php if (isset($success)) echo "<p class='success'>$success</p>"; ?>
@@ -138,35 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_player'])) {
             }
             ?>
         </div>
-        <div class="nav-links">
-            <a href="logout.php" class="btn-secondary">Logout</a>
-        </div>
     </div>
-    
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>About Us</h4>
-                <p>Slot Machine Monitoring System - Hillside Ridge Casino.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="https://jogjagamers.org/topic/238473-guide-a-fairly-gambling-method/#comment-2311683">Guide Slot</a></li>
-                    <li><a href="https://bit.ly/dcnegra">Discord</a></li>
-                    <li><a href="https://jogjagamers.org/topic/323994-la-sombra-negra-de-cartel-chapter-i-the-manufacturers-mojo/">Our Thread</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contact Info</h4>
-                <p>Email: support@hillsideridge.com</p>
-                <p>Email: support@cieloglam.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; <?php echo date('Y'); ?> Cielo Glam Enterprises. All rights reserved.</p>
-        </div>
-    </footer>
-</body>
 
+    <?php include '../includes/footer.php'; ?>
+</body>
 </html>
